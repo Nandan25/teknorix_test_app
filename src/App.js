@@ -18,11 +18,13 @@ function App() {
         return (
           <>
             {jobs.map((job) => {
-              return (
+              return job.function.title === department.title ? (
                 <>
                   <h1>{department.title}</h1>
                   <Job key={job.id} job={job} />
                 </>
+              ) : (
+                <></>
               );
             })}
           </>
