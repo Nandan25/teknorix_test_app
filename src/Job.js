@@ -2,8 +2,6 @@ import React from "react";
 import { Card, Badge } from "react-bootstrap";
 
 export default function Job({ job }) {
-  console.log(job);
-
   return (
     <Card>
       <Card.Body>
@@ -24,11 +22,6 @@ export default function Job({ job }) {
             <Badge variant="secondary">{"job.location.title"}</Badge>
           </div>
         </div>
-        {/* 
-        <div>{job.salary}</div>
-        <br />
-        <div>{job.company}</div>
-        <br /> */}
       </Card.Body>
     </Card>
   );

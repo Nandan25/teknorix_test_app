@@ -9,7 +9,7 @@ function App() {
   const { jobs, loading, error } = useFetchJobs(params);
   const { departments, department_loading, department_error } =
     useFetchDepartments(params);
-  console.log(jobs);
+
   return (
     <Container>
       {loading && <h1>Loading.....</h1>}
