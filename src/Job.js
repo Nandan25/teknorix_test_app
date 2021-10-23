@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Badge } from "react-bootstrap";
+import { Card, Badge, Button } from "react-bootstrap";
 
 export default function Job({ job }) {
   return (
@@ -14,13 +14,38 @@ export default function Job({ job }) {
               </span>
             </Card.Title>
             <Card.Subtitle className="text-muted mb-2">
-              {new Date(job.postedDate).toLocaleDateString()}
+              Posted on :&nbsp;
+              {new Date(job.postedDate).toLocaleDateString([], {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              })}
             </Card.Subtitle>
-            <Badge variant="secondary" className="mr-2">
+
+            <span className="r-space">{job.location.title}</span>
+
+            <span className="col-md-2" style={{ marginLeft: "10%" }}>
               {job.type}
-            </Badge>
-            <Badge variant="secondary">{"job.location.title"}</Badge>
+            </span>
           </div>
+          <span className="float-right">
+            <a
+              className="btn btn-default"
+              onClick={(event) => {
+                window.open(job.applyUrl, "_blank");
+              }}
+            >
+              Apply
+            </a>
+            <a
+              className="btn btn-default float-right"
+              onClick={(event) => {
+                window.open(job.hostedUrl, "_blank");
+              }}
+            >
+              View
+            </a>
+          </span>
         </div>
       </Card.Body>
     </Card>
