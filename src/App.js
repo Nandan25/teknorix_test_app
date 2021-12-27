@@ -44,8 +44,10 @@ function App() {
   };
 
   return (
-    <Container>
-      {loading || (department_loading && <h1>Loading.....</h1>)}
+    <Container classname="my-4">
+      <h1 className="mb-4">Teknorix jobs</h1>
+
+      {loading && <div class="spinner-border text-primary" role="status" />}
       {error || (department_error && <h1>Error.Try Refreshing</h1>)}
       {buildFinalDataObject()}
     </Container>

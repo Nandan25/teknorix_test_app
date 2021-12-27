@@ -1,7 +1,9 @@
-import React from "react";
-import { Card, Badge, Button } from "react-bootstrap";
+import React, { useState } from "react";
+import { Card, Badge, Button, Collapse } from "react-bootstrap";
 
 export default function Job({ job }) {
+  const [open, setOpen] = useState(false);
+  console.log(job);
   return (
     <Card>
       <Card.Body>
@@ -22,13 +24,33 @@ export default function Job({ job }) {
               })}
             </Card.Subtitle>
 
-            <span className="r-space">{job.location.title}</span>
-
-            <span className="col-md-2" style={{ marginLeft: "10%" }}>
+            <Badge
+              variant="secondary"
+              style={{
+                color: "white",
+                backgroundColor: "grey",
+                marginRight: "4px",
+              }}
+            >
+              {job.location.title}
+            </Badge>
+            <Badge
+              variant="secondary"
+              style={{ color: "white", backgroundColor: "grey" }}
+            >
               {job.type}
-            </span>
+            </Badge>
           </div>
           <span className="float-right">
+            <a
+              className="btn btn-default float-right"
+              onClick={(event) => {
+                // window.open(job.hostedUrl, "_blank");
+                setOpen((prevOpen) => !prevOpen);
+              }}
+            >
+              {!open ? "View" : "Hide"}
+            </a>
             <a
               className="btn btn-default"
               onClick={(event) => {
@@ -37,16 +59,12 @@ export default function Job({ job }) {
             >
               Apply
             </a>
-            <a
-              className="btn btn-default float-right"
-              onClick={(event) => {
-                window.open(job.hostedUrl, "_blank");
-              }}
-            >
-              View
-            </a>
           </span>
         </div>
+        <Card.Text></Card.Text>
+        <Collapse in={open}>
+          <div dangerouslySetInnerHTML={{ __html: job.description }} />
+        </Collapse>
       </Card.Body>
     </Card>
   );
